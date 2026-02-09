@@ -1,41 +1,10 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>My blog</title>
-</head>
-
-<body>
-    <header>
-        <h1><a href="https://guthib.com">guthib</a></h1>
-    </header>
-    <article>
-        {% for post in posts %}
-        <article>
-            <h2><a href="">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr}}</p>
-            <time>published: {{ post.published_date }}</time>
-        </article>
-        {% endfor %}
-        <time>published: 06.02.2026, 1:56</time>
-        <h2><a href="">My first post</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta
-            gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-            massa justo sit amet risus.</p>
-    </article>
-
-    <article>
-        <time>published: 06.02.2026, 1:58</time>
-        <h2><a href="">My second Post</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta
-            gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-    </article>
-    <p>Hi there!</p>
-    <p>It works!</p>
-    <em>Hellooooooooo!</em>
-    <br>
-    <strong>What's up</strong>
-    <a href="https://guthib.com">Link</a>
-</body>
-
-</html>
+{% extends 'blog/base.html' %}
+{% block content %}
+{% for post in posts %}
+<article class="post">
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.text|linebreaksbr}}</p>
+    <time class="date">published: {{ post.published_date }}</time>
+</article>
+{% endfor %}
+{% endblock %}
